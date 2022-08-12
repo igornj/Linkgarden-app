@@ -1,34 +1,35 @@
 <div>
+  <h1 class="text-8xl font-bold underline">
+    Hello world!
+  </h1>
   <form class="example-form" [formGroup]="registerForm">
-    <div class="example-container">
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your name</mat-label>
-        <input matInput type="text" placeholder="igor" formControlName="name" required>
-      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your name</mat-label>
+      <input matInput type="text" placeholder="igor" formControlName="name" required>
+    </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input matInput type="email" placeholder="dale@gmail.com" formControlName="email" required>
-      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput type="email" placeholder="dale@gmail.com" formControlName="email" required>
+    </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your User Address</mat-label>
-        <input matInput type="text" placeholder="@dale" formControlName="userAddress" required>
-      </mat-form-field>
-
-
-      <mat-form-field appearance="fill">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" placeholder="password" formControlName="userAddress" required>
-      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your User Address</mat-label>
+      <input matInput type="text" placeholder="@dale" formControlName="userAddress" required>
+    </mat-form-field>
 
 
-      <mat-form-field appearance="fill">
-        <mat-label>Profile image</mat-label>
-        <input matInput type="text" placeholder="put anything here for testing" formControlName="userAddress" required>
-      </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="password" formControlName="password" required>
+    </mat-form-field>
 
-      <button (click)="registerUser()">Register</button>
-    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Profile image</mat-label>
+      <input matInput type="text" placeholder="put anything here for testing" formControlName="profileImage" required>
+    </mat-form-field>
+
+    <button mat-flat-button color="accent" (click)="registerUser()">Register</button>
   </form>
 </div>
