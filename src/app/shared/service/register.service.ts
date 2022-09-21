@@ -4,9 +4,7 @@ import { Injectable } from '@angular/core';
 import { Register } from "../model/register.model";
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RegisterService {
 
 

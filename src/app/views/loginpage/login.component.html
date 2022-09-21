@@ -8,10 +8,15 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Enter your password</mat-label>
-        <input matInput type="password" formControlName="email" required>
+        <input matInput placeholder="Enter your password" type="password" formControlName="password" required>
       </mat-form-field>
 
-      <button mat-flat-button color="primary" (click)="loginUser()">Login</button>
+
+
+      <button type="button" mat-flat-button color="primary" (click)="loginUser()">Login</button>
+      <button type="button" color="primary" (click)="forgotPassword()">Forgot your password?</button>
+      <button type="button" color="primary" (click)="goToRegister()">Don't you have an Acoount? Join here!</button>
+
     </div>
   </form>
 

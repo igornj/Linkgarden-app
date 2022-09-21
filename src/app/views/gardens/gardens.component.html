@@ -1,0 +1,22 @@
+<div>
+  <form class="example-form" [formGroup]="gardenForm">
+    <div class="example-container">
+      <h1>Create your garden!</h1>
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your link garden title: </mat-label>
+        <input matInput placeholder="Instagram" formControlName="linkTitle" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your link garden URL:</mat-label>
+        <input matInput placeholder="Enter your password" type="www.instagram.com/fosade" formControlName="linkUrl" required>
+      </mat-form-field>
+
+
+
+      <button type="button" mat-flat-button color="primary" (click)="createGarden()">Create Garden</button>
+
+    </div>
+  </form>
+
+</div>
