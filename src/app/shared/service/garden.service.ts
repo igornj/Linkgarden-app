@@ -19,11 +19,11 @@ export class GardenService {
   constructor(private http: HttpClient) { }
 
 
-  public createGarden(gardenInfo: Garden): Observable<Garden> {
-    return this.http.post<Garden>(this.apiUrl + '/create-garden', gardenInfo);
+  public createGarden(gardenInfo: Garden, userId: String): Observable<Garden> {
+    return this.http.post<Garden>(this.apiUrl + '/create-garden/' + userId, gardenInfo);
   }
 
-  public findGardens(userId: string) : Observable<Garden>{
-    return this.http.get<Garden>(this.apiUrl + '/find-gardens' + userId);
+  public findGardens(userId: string): Observable<Garden> {
+    return this.http.get<Garden>(this.apiUrl + '/find-gardens/' + userId);
   }
 }

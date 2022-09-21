@@ -6,7 +6,8 @@ import { GardenService } from 'src/app/shared/service/garden.service';
 @Component({
   selector: 'app-gardens',
   templateUrl: './gardens.component.html',
-  styleUrls: ['./gardens.component.css']
+  styleUrls: ['./gardens.component.css'],
+  providers: [GardenService]
 })
 
 
@@ -24,19 +25,25 @@ export class GardensComponent implements OnInit {
       linkUrl: ['', [Validators.required]],
     })
 
-    this.findGardens();
+    //this.findGardens();
   }
 
 
   createGarden() {
-    this.service.createGarden(this.gardenForm.value).subscribe(e => console.log(e));
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+      this.service.createGarden(this.gardenForm.value, userId).subscribe(e => console.log(e));
+    }
+    //handle else case
   }
 
-  findGardens(){
+  findGardens() {
     const userId = localStorage.getItem("userId");
-    if(userId){
+    if (userId) {
       this.service.findGardens(userId).subscribe(e => this.gardenList.push(e));
     }
+
+    //handle else case
 
     console.log(this.gardenList);
   }

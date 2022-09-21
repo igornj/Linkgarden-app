@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     this.service.loginUser(this.loginForm.value).subscribe(result => localStorage.setItem("userId", result.id));
-    const url: string[] = ['/']
+    const url: string[] = ['/my-gardens']
     this.router.navigate(url);
   }
 

@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
 
   registerUser() {
     this.service.createUser(this.registerForm.value).subscribe(result => console.log(result));
-    const url: string[] = ['/']
+    const url: string[] = ['/login']
     this.router.navigate(url);
   }
 
