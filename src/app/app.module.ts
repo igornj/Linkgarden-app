@@ -14,7 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './views/registerpage/register.component';
 import { HomeComponent } from './views/homepage/home.component';
 import { LoginComponent } from './views/loginpage/login.component';
-import { GardensComponent } from './views/gardens/gardens.component';
+import { CreateGardenComponent } from './views/creategarden/creategarden.component';
+import { MainComponent } from './views/main/main.component';
 
 
 
@@ -24,7 +25,8 @@ import { GardensComponent } from './views/gardens/gardens.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    GardensComponent,
+    CreateGardenComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,

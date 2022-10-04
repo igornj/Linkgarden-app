@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Garden } from "../model/garden.model";
-import { Login } from "../model/login.model";
+import { Garden } from "../model/creategarden.model";
 
 
 @Injectable()
@@ -19,11 +18,11 @@ export class GardenService {
   constructor(private http: HttpClient) { }
 
 
-  public createGarden(gardenInfo: Garden, userId: String): Observable<Garden> {
-    return this.http.post<Garden>(this.apiUrl + '/create-garden/' + userId, gardenInfo);
+  public createGarden(garden: Garden): Observable<Garden> {
+    return this.http.post<Garden>(this.apiUrl + '/create-garden/', garden);
   }
 
-  public findGardens(userId: string): Observable<Garden> {
-    return this.http.get<Garden>(this.apiUrl + '/find-gardens/' + userId);
+  public findGardens(userEmail: string): Observable<Garden[]> {
+    return this.http.get<Garden[]>(this.apiUrl + '/find-gardens/' + userEmail);
   }
 }
