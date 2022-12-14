@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/shared/service/login.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-login',
@@ -24,11 +26,11 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.email]],
       password: ['', [Validators.required]]
     });
+
   }
 
   loginUser() {
     this.service.loginUser(this.loginForm.value).subscribe(result => localStorage.setItem("userLoggedIn", result.email));
-    //const url: string[] = ['/home']
 
     if (localStorage.getItem("userLoggedIn")) {
       this.router.navigateByUrl('/home');
@@ -41,8 +43,7 @@ export class LoginComponent implements OnInit {
   forgotPassword() { }
 
   goToRegister(): void {
-    const url: string[] = ['/register']
-    this.router.navigate(url);
+    this.router.navigateByUrl('/register');
   }
 
 }

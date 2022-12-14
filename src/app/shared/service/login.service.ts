@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { Login } from "../model/login.model";
 
 
@@ -16,6 +16,9 @@ export class LoginService {
   };
 
   constructor(private http: HttpClient) { }
+
+  private userEmailInfo = new BehaviorSubject("");
+  data: Observable<string> = this.userEmailInfo.asObservable();
 
 
   public loginUser(LoginInfo: Login): Observable<Login> {
