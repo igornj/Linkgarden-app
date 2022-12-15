@@ -16,6 +16,8 @@ import { HomeComponent } from './views/homepage/home.component';
 import { LoginComponent } from './views/loginpage/login.component';
 import { CreateGardenComponent } from './views/creategarden/creategarden.component';
 import { MainComponent } from './views/main/main.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
 
 
 
@@ -37,7 +39,11 @@ import { MainComponent } from './views/main/main.component';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
+    StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]
