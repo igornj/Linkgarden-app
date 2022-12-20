@@ -4,7 +4,5 @@ export class User{
   userAddress: string;
   password: string;
   profileImage: string;
-  linkTitle: string;
-  linkUrl: string;
 }
 

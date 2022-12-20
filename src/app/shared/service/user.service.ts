@@ -1,10 +1,12 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { User } from "../model/user.model";
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
   apiUrl = "http://localhost:8080/api/garden";
 
@@ -19,7 +21,11 @@ export class UserService {
 
 
   getUserInfo(userEmail: string): Observable<User> {
-    return this.httpClient.get<User>(this.apiUrl + '/get-user/' + userEmail);
+    return this.httpClient
+    .get<User>(this.apiUrl + '/get-user/' + userEmail)
+    .pipe(map((data) =>{
+      return data;
+    }))
   }
 
 }

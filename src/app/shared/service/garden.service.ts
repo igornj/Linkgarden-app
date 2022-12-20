@@ -4,7 +4,9 @@ import { Observable } from "rxjs";
 import { Garden } from "../model/creategarden.model";
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class GardenService {
   apiUrl = "http://localhost:8080/api/garden";
 

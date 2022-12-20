@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,7 +17,11 @@ import { LoginComponent } from './views/loginpage/login.component';
 import { CreateGardenComponent } from './views/creategarden/creategarden.component';
 import { MainComponent } from './views/main/main.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { reducers } from './ngrx/user-reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './ngrx/user-effects';
 
 
 
@@ -40,10 +44,16 @@ import { reducers, metaReducers } from './reducers';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
+    StoreModule.forRoot(reducers),
+    StoreModule.forFeature('userinfo', reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
-    StoreModule.forRoot({}, {})
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forFeature([UserEffects]),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]

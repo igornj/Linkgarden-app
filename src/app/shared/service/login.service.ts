@@ -1,10 +1,13 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { Login } from "../model/login.model";
+import { User } from "../model/user.model";
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LoginService {
   apiUrl = "http://localhost:8080/api/garden";
 
@@ -17,11 +20,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  private userEmailInfo = new BehaviorSubject("");
-  data: Observable<string> = this.userEmailInfo.asObservable();
-
-
-  public loginUser(LoginInfo: Login): Observable<Login> {
-    return this.http.post<Login>(this.apiUrl + '/login-user', LoginInfo);
+  public loginUser(LoginInfo: Login): Observable<User> {
+    return this.http.post<User>(this.apiUrl + '/login-user', LoginInfo);
   }
 }
