@@ -1,5 +1,5 @@
-import { User } from "../shared/model/user.model";
+import { UserInfoState } from "../ngrx/user-reducer";
 
-export interface appStateInterface{
-  userInfo: User;
+export interface appStateInterface {
+  user: UserInfoState;
 }

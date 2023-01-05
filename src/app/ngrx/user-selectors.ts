@@ -1,12 +1,11 @@
 import { createSelector } from "@ngrx/store";
 import { appStateInterface } from "../types/appState.interface";
+import { UserInfoState } from "./user-reducer";
 
-export const selectFeature = (state: appStateInterface) => state.userInfo;
+export const selectUser = (state: appStateInterface) => state.user;
 
-export const emailSelector = createSelector(selectFeature, (state) => state.email);
+export const emailSelector = createSelector(selectUser, (state) => state);
 
-export const userSelectorSuccess = createSelector(selectFeature, (state) => {
-  return state;
-});
+export const userSelectorSuccess = createSelector(selectUser, (state: UserInfoState) => state.user);
 
-export const errorSelectorFailure = createSelector(selectFeature, (state) => state);
+export const errorSelectorFailure = createSelector(selectUser, (state) => state);

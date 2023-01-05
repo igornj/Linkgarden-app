@@ -6,8 +6,8 @@ import { GardenService } from 'src/app/shared/service/garden.service';
 import { UserService } from 'src/app/shared/service/user.service';
 import * as userAction from 'src/app/ngrx/user-action';
 import { emailSelector, userSelectorSuccess } from 'src/app/ngrx/user-selectors';
-import { map, Observable } from 'rxjs';
 import { appStateInterface } from 'src/app/types/appState.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -20,8 +20,8 @@ export class MainComponent implements OnInit {
 
   public gardenList: Garden[] = [];
   private userLoggedIn = localStorage.getItem("userLoggedIn") as string;
-  public userInfo: User[] = [];
-  userInfo$: Observable<User>;
+  //public userInfo$: Observable<User[]> = this.store.select(userSelectorSuccess);
+
 
   constructor(
     private gardenService: GardenService,
@@ -29,8 +29,7 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(userAction.getUserInfo());
-    this.userInfo$ = this.store.pipe(select(userSelectorSuccess));
+    this.store.dispatch(userAction.getUserInfo({ userEmail: this.userLoggedIn }));
     this.findGardens();
   }
 

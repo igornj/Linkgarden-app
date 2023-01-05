@@ -2,13 +2,14 @@
 
   <div>
     <h1>userinfo</h1>
-    <div *ngIf="userInfo$ | async as user">
+    <!-- <span>{{userInfo$ | async}}</span> -->
+    <!-- <div *ngFor="let user of userInfo$ | async">
       <h3>{{user.email}}</h3>
       <h3>{{user.name}}</h3>
       <h3>{{user.userAddress}}</h3>
       <h3>{{user.profileImage}}</h3>
-    </div>
-
+    </div> -->
+    <hr />
     <h1>gardenList</h1>
     <div *ngFor="let garden of gardenList">
       <h1>{{garden.linkTitle}}</h1>
@@ -17,6 +18,8 @@
     </div>
 
   </div>
+
+
 
 
 </div>

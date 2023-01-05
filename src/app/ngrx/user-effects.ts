@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { map, mergeMap } from "rxjs";
+import { catchError, exhaustMap, from, map, mergeMap, of, switchMap } from "rxjs";
 import { UserService } from "../shared/service/user.service";
 import * as UserActions from './user-action';
 
@@ -9,17 +9,16 @@ export class UserEffects {
 
   private userLoggedIn = localStorage.getItem("userLoggedIn") as string;
 
-  getUserInfo$ = createEffect(
-    () => {
-      return this.action$.pipe(
-        ofType(UserActions.getUserInfo),
-        mergeMap((action) =>{
-        return this.userService.getUserInfo(this.userLoggedIn).pipe(map(userinfo =>{
-          return UserActions.getUserInfoSuccess({userinfo})
-        }))
-      }))
-    }
-  )
+  getUserInfo$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(UserActions.getUserInfo),
+      switchMap(action =>
+        from(this.userService.getUserInfo(action.userEmail).pipe(
+          map(response => UserActions.getUserInfoSuccess({ user: response[0] })),
+          catchError((error: any) => of(UserActions.getUserInfoFailure(error)))))
+      )
+    )
+  );
 
 
 

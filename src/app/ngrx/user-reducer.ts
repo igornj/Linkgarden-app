@@ -1,18 +1,42 @@
 import { createReducer, on } from "@ngrx/store";
 import { User } from "../shared/model/user.model";
-import { getUserInfo, getUserInfoFailure, getUserInfoSuccess } from "./user-action";
+import * as userAction from "./user-action";
 
-export const initialState : User = {
-  name: "",
-  email: "",
-  userAddress: "",
-  password: "",
-  profileImage: ""
+export interface UserInfoState {
+  user: User[];
+  error: string;
+  status: 'pending' | 'loading' | 'error' | 'success'
+}
+
+
+export const initialState: UserInfoState = {
+  user: [],
+  error: 'null',
+  status: 'pending'
 };
 
-export const reducers = createReducer(
+
+export const userReducer = createReducer(
   initialState,
-  on(getUserInfo, (state) => ({...state})),
-  on(getUserInfoSuccess, (state, action) => ({...state, userInfo: action.userinfo})),
-  on(getUserInfoFailure, (state) => ({...state}))
+  on(userAction.getUserInfo, (state, { userEmail }) => ({
+    ...state,
+    userEmail: userEmail
+  })),
+
+
+  on(userAction.getUserInfoSuccess, (state, response) => ({
+    ...state,
+    user: [response.user],
+    error: 'null',
+    status: 'success'
+  })),
+
+
+  on(userAction.getUserInfoFailure, (state) => ({
+    ...state,
+    user: [],
+    error: 'dale',
+    status: 'error'
+
+  }))
 );
