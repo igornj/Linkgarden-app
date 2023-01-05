@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
+import { BehaviorSubject, Observable, map, shareReplay } from "rxjs";
 import { User } from "../model/user.model";
 
 
@@ -17,15 +17,30 @@ export class UserService {
     }),
   };
 
+  public userData: BehaviorSubject<User> = new BehaviorSubject<User>({
+    name: 's',
+    email: '',
+    userAddress: '',
+    password: '',
+    profileImage: ''
+  });
+
+
   constructor(private httpClient: HttpClient) { }
 
-
-  getUserInfo(userEmail: string): Observable<User> {
-    return this.httpClient
-    .get<User>(this.apiUrl + '/get-user/' + userEmail)
-    .pipe(map((data) =>{
-      return data;
-    }))
+  get(): Observable<User> {
+    return this.userData.asObservable();
   }
+
+  getUserInfo(userEmail: string) {
+    this.httpClient.get<User>(this.apiUrl + '/get-user/' + userEmail)
+      .pipe(shareReplay(1))
+      .subscribe(result => this.userData.next(result))
+  }
+
+  setUser(user: User): void {
+    this.userData.next(user);
+  }
+
 
 }
