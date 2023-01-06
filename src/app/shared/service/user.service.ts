@@ -18,7 +18,7 @@ export class UserService {
   };
 
   public userData: BehaviorSubject<User> = new BehaviorSubject<User>({
-    name: 's',
+    name: '',
     email: '',
     userAddress: '',
     password: '',
@@ -37,10 +37,5 @@ export class UserService {
       .pipe(shareReplay(1))
       .subscribe(result => this.userData.next(result))
   }
-
-  setUser(user: User): void {
-    this.userData.next(user);
-  }
-
 
 }
